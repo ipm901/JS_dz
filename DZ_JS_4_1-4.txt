@@ -1,0 +1,63 @@
+alert(`Написать функцию, которая принимает 2 числа и возвращает -1, если первое меньше, чем второе; 1 – если первое больше, чем второе; и 0 – если числа равны.`);
+let num1 = parseInt(prompt('Введите первое число'));
+let num2 = parseInt(prompt('Введите второе число'));
+let result = function (num1, num2){
+    if(num1 < num2){
+        return -1;
+    }else if(num1 > num2) {
+        return 1;
+    } else{
+        return 0;
+    }
+}
+alert(result(num1, num2));
+
+*************************************************************************************
+
+alert(`Написать функцию, которая вычисляет факториал переданного ей числа.`);
+let num = parseInt(prompt('Введите первое число'));
+
+function factorial(num) {
+    if (num === 0) {
+        return 1;
+    } else {
+        return num * factorial(num - 1);
+    }
+}
+alert(factorial(num))
+
+********************************************************************************
+alert(`Написать функцию, которая принимает три отдельные
+цифры и превращает их в одно число. Например: цифры
+1, 4, 9 превратятся в число 149`);
+let num1 = parseInt(prompt('Введите 1 число '));
+let num2 = parseInt(prompt('Введите 2 число '));
+let num3 = parseInt(prompt('Введите 3 число '))
+function result(num1, num2, num3) {
+    return Number(`${num1}${num2}${num3}`);
+}
+alert(result(num1, num2, num3));
+
+*******************************************************************************
+alert(`Написать функцию, которая принимает длину и ширину прямоугольника и вычисляет его площадь.
+ Если в функцию передали 1 параметр, то она вычисляет площадь квадрата.`)
+
+function calculateArea(length, width) {
+    if (width === undefined) {
+       
+        const area = length * length;
+        return area;
+    } else {
+               const area = length * width;
+        return area;
+    }
+}
+
+const lengthRectangle = parseInt(prompt('Введите первое значение:'));
+const widthRectangle = parseInt(prompt('Введите второе значение:'));
+const rectangleArea = calculateArea(lengthRectangle, widthRectangle);
+console.log('Площадь прямоугольника:', rectangleArea);
+
+const sideSquare = lengthRectangle;
+const squareArea = calculateArea(sideSquare);
+console.log('Площадь квадрата:', squareArea);
