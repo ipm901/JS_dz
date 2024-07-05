@@ -1,0 +1,87 @@
+alert(`Написать функцию, которая принимает время (часы, минуты, секунды) и выводит его на экран в формате «чч:мм:сс». Если при вызове функции минуты и/или секунды не были переданы, то выводить их как 00.`)
+
+function formatTime(hours, minutes, seconds) {
+    minutes = minutes || 0;
+    seconds = seconds || 0;
+
+    const formattedHours = hours < 10 ? '0' + hours : hours;
+    const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+    const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+
+    const formattedTime = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    
+    return formattedTime;
+}
+
+alert(formatTime(12, 30, 45)); 
+alert(formatTime(8, 5)); 
+alert(formatTime(18)); 
+
+*************************************************************************************************
+alert(`Написать функцию, которая принимает время (часы, минуты, секунды) и выводит его на экран в формате «чч:мм:сс». Если при вызове функции минуты и/или секунды не были переданы, то выводить их как 00.`)
+
+function formatTime(hours, minutes, seconds) {
+    minutes = minutes || 0;
+    seconds = seconds || 0;
+
+    const formattedHours = hours < 10 ? '0' + hours : hours;
+    const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+    const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+
+    const formattedTime = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+    
+    return formattedTime;
+}
+
+alert(formatTime(12, 30, 45)); 
+alert(formatTime(8, 5)); 
+alert(formatTime(18)); 
+**************************************************************************************************
+alert(`Написать функцию, которая принимает количество секунд,
+переводит их в часы, минуты и секунды и возвращает в
+виде строки «чч:мм:сс».`)
+
+function secondsToTime(seconds) {
+   
+    const hours = Math.floor(seconds / 3600);
+    const remainingSeconds = seconds % 3600;
+    const minutes = Math.floor(remainingSeconds / 60);
+    const remainingSecondsFinal = remainingSeconds % 60;
+    
+   
+    const formattedTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSecondsFinal).padStart(2, '0')}`;
+    
+    return formattedTime;
+}
+let seconds = parseInt(prompt('Введите значение:'));
+
+
+alert(secondsToTime(seconds)); 
+*************************************************************************************************
+alert(`Написать функцию, которая считает разницу между датами. Функция принимает 6 параметров, которые описывают 2 даты, и возвращает результат в виде строки «чч:мм:сс». При выполнении задания используйте функции из предыдущих 2-х заданий: сначала обе даты переведите в секунды, узнайте разницу в секундах, а потом разницу переведите обратно в «чч:мм:сс».`)
+
+
+function dateToSeconds(hours, minutes, seconds) {
+    return hours * 3600 + minutes * 60 + seconds;
+}
+
+function secondsToTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const remainingSeconds = seconds % 3600;
+    const minutes = Math.floor(remainingSeconds / 60);
+    const remainingSecondsFinal = remainingSeconds % 60;
+    
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSecondsFinal).padStart(2, '0')}`;
+}
+
+
+function getDateTimeDifference(hours1, minutes1, seconds1, hours2, minutes2, seconds2) {
+    const seconds1Total = dateToSeconds(hours1, minutes1, seconds1);
+    const seconds2Total = dateToSeconds(hours2, minutes2, seconds2);
+    const differenceSeconds = Math.abs(seconds1Total - seconds2Total);
+    
+    return secondsToTime(differenceSeconds);
+}
+
+
+alert(getDateTimeDifference(10, 30, 15, 8, 45, 20)); 
