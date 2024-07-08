@@ -1,0 +1,39 @@
+alert(`Вывод на экран с помощью document.write() в виде списка
+(с помощью тегов ul и li).`)
+
+let fruits = ["Яблоко", "Банан", "Апельсин", "Груша", "Вишня"];
+
+fruits.sort();
+
+
+function displayFruitsList(fruitsArray) {
+    document.write("<ul>");
+    fruitsArray.forEach(function(fruit) {
+        document.write(`<li>${fruit}</li>`);
+    });
+    document.write("</ul>");
+}
+
+displayFruitsList(fruits);
+*******************************************************************************************
+
+alert(`Поиск фрукта в массиве. Функция принимает название фрукта и возвращает индекс найденного элемента или -1, если не найден. Поиск должен быть нерегистрозависимым.`)
+
+let fruits = ["Яблоко", "Банан", "Апельсин", "Груша", "Вишня"];
+
+function findFruitIndex(fruitName) {
+   
+    fruitName = fruitName.toLowerCase();
+    
+   
+    let index = fruits.findIndex(fruit => fruit.toLowerCase() === fruitName);
+    
+    return index !== -1 ? index : -1;
+}
+
+let fruitIndex = findFruitIndex("вишня");
+
+if (fruitIndex !== -1) {
+    alert(`Фрукт найден. Индекс: ${fruitIndex}`);
+} else {
+    alert("Фрукт не найден.");
