@@ -1,0 +1,35 @@
+class News {
+    constructor(title, text, tags, publicationDate) {
+        this.title = title;
+        this.text = text;
+        this.tags = tags;
+        this.publicationDate = new Date(publicationDate);
+    }
+
+    print() {
+        const currentDate = new Date();
+        const timeDiff = currentDate.getTime() - this.publicationDate.getTime();
+        
+        let dateStr = '';
+        if (timeDiff < 24 * 60 * 60 * 1000) {
+            dateStr = 'сегодня';
+        } else if (timeDiff < 7 * 24 * 60 * 60 * 1000) {
+            const days = Math.floor(timeDiff / (24 * 60 * 60 * 1000));
+            dateStr = `${days} дней назад`;
+        } else {
+            const day = String(this.publicationDate.getDate()).padStart(2, '0');
+            const month = String(this.publicationDate.getMonth() + 1).padStart(2, '0');
+            const year = this.publicationDate.getFullYear();
+            dateStr = `${day}.${month}.${year}`;
+        }
+
+        console.log(`Заголовок: ${this.title}`);
+        console.log(`Текст: ${this.text}`);
+        console.log(`Теги: ${this.tags.join(', ')}`);
+        console.log(`Дата публикации: ${dateStr}`);
+    }
+}
+
+
+const news1 = new News('Новость 1', 'Текст новости 1', ['новости', 'javascript'], '2022-09-28T12:00:00');
+news1.print();
