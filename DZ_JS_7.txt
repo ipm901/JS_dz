@@ -1,0 +1,146 @@
+alert(`Реализовать класс, описывающий простой маркер. В классе
+должны быть следующие компоненты:`);
+class Marker {
+  constructor(color, inkLevel) {
+    this.color = color;
+    this.inkLevel = inkLevel;
+  }
+
+  print(text) {
+    let printedText = '';
+    for (let i = 0; i < text.length; i++) {
+      if (text[i] !== ' ') {
+        if (this.inkLevel >= 0.5) {
+          printedText += text[i];
+          this.inkLevel -= 0.5;
+        } else {
+          break;
+        }
+      } else {
+        printedText += ' ';
+      }
+    }
+    alert('%c' + printedText, `color: ${this.color}`);
+  }
+}
+
+class RefillableMarker extends Marker {
+  refill(inkAmount) {
+    this.inkLevel = Math.min(100, this.inkLevel + inkAmount);
+    alert('Marker refilled. Ink level: ' + this.inkLevel + '%');
+  }
+}
+
+const marker = new RefillableMarker('blue', 50);
+marker.print('Hello, World! This is a test message.');
+marker.refill(30);
+marker.print('Printing after refill.');
+
+****************************************************************************
+alert(`Реализуйте класс ExtendedDate, унаследовав его от стандартного класса Date и добавив следующие возможности:`);
+class ExtendedDate extends Date {
+  getDateText() {
+    const months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+    return `${this.getDate()} ${months[this.getMonth()]}`;
+  }
+
+  isFutureDate() {
+    return this > new Date();
+  }
+
+  isLeapYear() {
+    const year = this.getFullYear();
+    return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+  }
+
+  getNextDate() {
+    const nextDay = new Date(this);
+    nextDay.setDate(this.getDate() + 1);
+    return nextDay;
+  }
+}
+
+const currentDate = new ExtendedDate();
+alert('Дата в текстовом формате:', currentDate.getDateText());
+alert('Является ли дата будущей или текущей:', currentDate.isFutureDate());
+alert('Является ли текущий год високосным:', currentDate.isLeapYear());
+alert('Следующая дата:', currentDate.getNextDate());
+************************************************************************
+alert(`Реализовать класс Employee, описывающий работника, и создать массив работников банка:`);
+       class Employee {
+  constructor(name, position, department) {
+    this.name = name;
+    this.position = position;
+    this.department = department;
+  }
+}
+
+class EmpTable {
+  constructor(employees) {
+    this.employees = employees;
+  }
+
+  getHtml() {
+    let tableHtml = '<table>';
+    tableHtml += '<tr><th>Имя</th><th>Должность</th><th>Отдел</th></tr>';
+    this.employees.forEach(employee => {
+      tableHtml += `<tr><td>${employee.name}</td><td>${employee.position}</td><td>${employee.department}</td></tr>`;
+    });
+    tableHtml += '</table>';
+    return tableHtml;
+  }
+}
+
+const bankEmployees = [
+  new Employee('Иванов Иван', 'Менеджер', 'Отдел продаж'),
+  new Employee('Петрова Анна', 'Бухгалтер', 'Финансовый отдел'),
+  new Employee('Сидоров Павел', 'Разработчик', 'IT-отдел')
+];
+
+
+const empTable = new EmpTable(bankEmployees);
+document.body.innerHTML = empTable.getHtml();
+
+**********************************************************************
+alert(`Создать объект класса StyledEmpTable и вывести на экран
+результат работы метода getHtml().:`);
+
+class EmpTable {
+  constructor(employees) {
+    this.employees = employees;
+  }
+
+  getHtml() {
+    let tableHtml = '<table>';
+    tableHtml += '<tr><th>Имя</th><th>Должность</th><th>Отдел</th></tr>';
+    this.employees.forEach(employee => {
+      tableHtml += `<tr><td>${employee.name}</td><td>${employee.position}</td><td>${employee.department}</td></tr>`;
+    });
+    tableHtml += '</table>';
+    return tableHtml;
+  }
+}
+
+class StyledEmpTable extends EmpTable {
+  getStyles() {
+    return '<style>.styled-table {border-collapse: collapse; width: 100%;} .styled-table th, .styled-table td {border: 1px solid black; padding: 8px;}</style>';
+  }
+
+  getHtml() {
+    let tableHtml = '<div class="styled-table">';
+    tableHtml += this.getStyles();
+    tableHtml += super.getHtml();
+    tableHtml += '</div>';
+    return tableHtml;
+  }
+}
+
+const bankEmployees = [
+  { name: 'Иванов', position: 'Менеджер', department: 'Отдел продаж' },
+  { name: 'Петров', position: 'Разработчик', department: 'IT отдел' },
+  { name: 'Сидорова', position: 'Бухгалтер', department: 'Финансовый отдел' }
+];
+
+const styledEmpTable = new StyledEmpTable(bankEmployees);
+document.body.innerHTML = styledEmpTable.getHtml();
+
