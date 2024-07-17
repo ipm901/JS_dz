@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Генератор случайных чисел</title>
+</head>
+<body>
+<div id="randomNumber"></div>
+<button id="generateButton">Сгенерировать случайное число</button>
+
+<script>
+document.getElementById('generateButton').addEventListener('click', function() {
+  let randomNumber = Math.floor(Math.random() * 101); // Генерация случайного числа от 0 до 100
+  document.getElementById('randomNumber').textContent = randomNumber; // Вывод числа в элемент div
+});
+</script>
+</body>
+</html>
+
+*************************************************************************************
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Отслеживание координат мыши</title>
+<style>
+#mouseTracker {
+  width: 100vw;
+  height: 100vh;
+  background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+</style>
+</head>
+<body>
+<div id="mouseTracker">Наведите мышь здесь</div>
+
+<script>
+let mouseTracker = document.getElementById('mouseTracker');
+
+mouseTracker.addEventListener('mousemove', function(event) {
+ let mouseX = event.clientX;
+  let mouseY = event.clientY;
+  mouseTracker.textContent = `Координаты мыши: X ${mouseX}, Y ${mouseY}`;
+});
+
+mouseTracker.addEventListener('click', function(event) {
+  let buttonClicked = event.button;
+  let buttonName = buttonClicked === 0 ? 'левой' : 'правой';
+  mouseTracker.textContent = `Клик ${buttonName} кнопкой мыши`;
+});
+</script>
+</body>
+</html>
+*************************************************************************************
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Скрыть и показать текст</title>
+</head>
+<body>
+<button id="toggleButton">Скрыть/Показать текст</button>
+<p id="hiddenText">Это текст, который можно скрыть и показать</p>
+
+<script>
+let toggleButton = document.getElementById('toggleButton');
+let hiddenText = document.getElementById('hiddenText');
+let isHidden = false;
+
+toggleButton.addEventListener('click', function() {
+  if (isHidden) {
+    hiddenText.style.display = 'block';
+    toggleButton.textContent = 'Скрыть текст';
+    isHidden = false;
+  } else {
+    hiddenText.style.display = 'none';
+    toggleButton.textContent = 'Показать текст';
+    isHidden = true;
+  }
+});
+</script>
+</body>
+</html>
+*****************************************************************************************
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Вкладки</title>
+<style>
+.tab {
+  display: none;
+}
+.tab.active {
+  display: block;
+}
+</style>
+</head>
+<body>
+<div class="tabs">
+  <button class="tabButton" onclick="openTab('tab1')">Вкладка 1</button>
+  <button class="tabButton" onclick="openTab('tab2')">Вкладка 2</button>
+  <button class="tabButton" onclick="openTab('tab3')">Вкладка 3</button>
+</div>
+
+<div id="tab1" class="tab active">
+  <h2>Содержимое вкладки 1</h2>
+  <p>Это содержимое вкладки 1</p>
+</div>
+
+<div id="tab2" class="tab">
+  <h2>Содержимое вкладки 2</h2>
+  <p>Это содержимое вкладки 2</p>
+</div>
+
+<div id="tab3" class="tab">
+  <h2>Содержимое вкладки 3</h2>
+  <p>Это содержимое вкладки 3</p>
+</div>
+
+<script>
+function openTab(tabName) {
+ let i, tabContent, tabButtons;
+  tabContent = document.getElementsByClassName("tab");
+  for (i = 0; i < tabContent.length; i++) {
+    tabContent[i].classList.remove("active");
+  }
+  tabButtons = document.getElementsByClassName("tabButton");
+  for (i = 0; i < tabButtons.length; i++) {
+    tabButtons[i].classList.remove("active");
+  }
+  document.getElementById(tabName).classList.add("active");
+}
+</script>
+</body>
+</html>
+
+*********************************************************************************************
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Список новостей</title>
+</head>
+<body>
+<h1>Список новостей</h1>
+
+<ul id="newsList">
+  <li>Новость 1 <button onclick="deleteNews(this)">Удалить</button></li>
+  <li>Новость 2 <button onclick="deleteNews(this)">Удалить</button></li>
+  <li>Новость 3 <button onclick="deleteNews(this)">Удалить</button></li>
+</ul>
+
+<script>
+function deleteNews(button) {
+  var listItem = button.parentNode;
+  listItem.style.display = "none";
+}
+</script>
+</body>
+</html>
+*************************************************************************************
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Прогрессбар</title>
+</head>
+<body>
+<h1>Прогрессбар</h1>
+
+<progress id="progressBar" max="100" value="0"></progress>
+<button onclick="increaseProgress()">Увеличить на 5%</button>
+
+<script>
+function increaseProgress() {
+  var progressBar = document.getElementById("progressBar");
+  var currentValue = progressBar.value;
+  var newValue = currentValue + 5;
+  
+  if (newValue <= 100) {
+    progressBar.value = newValue;
+  } else {
+    progressBar.value = 100;
+  }
+}
+</script>
+</body>
+</html>
