@@ -1,0 +1,263 @@
+Задание 2
+-------------------------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запрещённое выделение текста</title>
+    <style>
+       
+        body {
+            user-select: none; /* Для большинства браузеров */
+            -webkit-user-select: none; /* Для Safari */
+            -moz-user-select: none; /* Для Firefox */
+            -ms-user-select: none; /* Для Internet Explorer/Edge */
+        }
+    </style>
+    <script>
+        
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</head>
+<body>
+    <h1>Добро пожаловать на нашу страницу!</h1>
+    <p>На этой странице вы не можете выделять текст и вызывать контекстное меню.</p>
+</body>
+</html>
+*********************************************************************************************
+Задание 4
+-----------------------------------------------------------------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор</title>
+
+    <style>
+        h1, div{
+          color: rgb(6, 216, 253);
+          text-align: center;
+        };
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #calculator {
+            background: white;
+            padding: 30px;
+            width: 100vh;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 23%;
+            padding: 10px;
+            margin: 1%;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+  <div>
+    <h1>Задание номер 4</h1><br>
+    
+<div id="calculator">
+  
+    <input type="text" id="result" disabled>
+    <div>
+        <button onclick="clearResult()">C</button>
+        <button onclick="appendToResult('/')">/</button>
+        <button onclick="calculateResult()">=</button>
+    </div>
+    <div>
+        <button onclick="appendToResult('7')">7</button>
+        <button onclick="appendToResult('8')">8</button>
+        <button onclick="appendToResult('9')">9</button>
+            </div>
+    <div>
+        <button onclick="appendToResult('4')">4</button>
+        <button onclick="appendToResult('5')">5</button>
+        <button onclick="appendToResult('6')">6</button>
+        
+    </div>
+    <div>
+        <button onclick="appendToResult('1')">1</button>
+        <button onclick="appendToResult('2')">2</button>
+        <button onclick="appendToResult('3')">3</button>
+       
+    </div>
+    <div>
+        <button onclick="appendToResult('0')">0</button>
+      
+    </div>
+    <div>
+      <button onclick="appendToResult('*')">*</button>
+      <button onclick="appendToResult('-')">-</button>
+      <button onclick="appendToResult('+')">+</button>
+      
+    </div>
+</div>
+</div>
+<script>
+    function appendToResult(value) {
+        document.getElementById('result').value += value;
+    }
+
+    function clearResult() {
+        document.getElementById('result').value = '';
+    }
+
+    function calculateResult() {
+        const resultField = document.getElementById('result');
+        try {
+            resultField.value = eval(resultField.value);
+        } catch (error) {
+            resultField.value = 'Ошибка';
+        }
+    }
+</script>
+
+</body>
+</html>
+**************************************************************************************************
+5
+----------------------------------------------------------------------------------------------------------------------------
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Горизонтальное меню</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .menu {
+            width: 600px;
+            height: 50px;
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .menu-item {
+            color: white;
+            padding: 15px;
+            position: relative;
+            cursor: pointer;
+        }
+        .menu-item:hover {
+            background-color: #555;
+        }
+        .submenu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            background-color: #444;
+            min-width: 120px;
+            z-index: 1;
+        }
+        .submenu-item {
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .submenu-item:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="menu">
+    <div class="menu-item" onclick="toggleSubmenu('submenu1')">Ссылка 1
+        <div class="submenu" id="submenu1">
+            <div class="submenu-item">1.1</div>
+            <div class="submenu-item">1.2</div>
+            <div class="submenu-item">1.3</div>
+        </div>
+    </div>
+    <div class="menu-item" onclick="toggleSubmenu('submenu2')">Ссылка 2
+        <div class="submenu" id="submenu2">
+            <div class="submenu-item">2.1</div>
+            <div class="submenu-item">2.2</div>
+            <div class="submenu-item">2.3</div>
+        </div>
+    </div>
+    <div class="menu-item" onclick="toggleSubmenu('submenu3')">Ссылка 3
+        <div class="submenu" id="submenu3">
+            <div class="submenu-item">3.1</div>
+            <div class="submenu-item">3.2</div>
+            <div class="submenu-item">3.3</div>
+        </div>
+    </div>
+    <div class="menu-item" onclick="toggleSubmenu('submenu4')">Ссылка 4
+        <div class="submenu" id="submenu4">
+            <div class="submenu-item">4.1</div>
+            <div class="submenu-item">4.2</div>
+            <div class="submenu-item">4.3</div>
+        </div>
+    </div>
+    <div class="menu-item" onclick="toggleSubmenu('submenu5')">Ссылка 5
+        <div class="submenu" id="submenu5">
+            <div class="submenu-item">5.1</div>
+            <div class="submenu-item">5.2</div>
+            <div class="submenu-item">5.3</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleSubmenu(id) {
+        const submenu = document.getElementById(id);
+        if (submenu.style.display === 'block') {
+            submenu.style.display = 'none';
+        } else {
+            // Скрываем другие подменю
+            const submenus = document.querySelectorAll('.submenu');
+            submenus.forEach((sub) => {
+                sub.style.display = 'none';
+            });
+            submenu.style.display = 'block';
+        }
+    }
+
+    // Закрытие подменю при клике вне меню
+    window.onclick = function(event) {
+        if (!event.target.matches('.menu-item')) {
+            const submenus = document.querySelectorAll('.submenu');
+            submenus.forEach((sub) => {
+                sub.style.display = 'none';
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
